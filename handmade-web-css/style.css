@@ -1,5 +1,6 @@
 body {
     background-color: rgb(240, 236, 241);
+    margin: 5em 5em 5em 5em;
 }
 
 * {
@@ -11,9 +12,18 @@ h1, h3, h5 {
 }
 
 p {
-    color: rgb(19, 1, 51);
+    color: rgb(19, 1, 51)
 }
 
-a link {
+a {
     color: rgb(90, 163, 223);
+}
+
+#title {
+    font-size: 80px;
+}
+
+.quote {
+    padding-left: 40px;
+    padding-right: 80px;
 }

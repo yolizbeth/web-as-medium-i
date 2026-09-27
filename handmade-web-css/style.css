@@ -1,29 +1,134 @@
-body {
-    background-color: rgb(240, 236, 241);
-    margin: 5em 5em 5em 5em;
+:root {
+    /* color: primary */
+    --c-primary: var(--cream);
+    --c-primary-bg: var(--peony-pink);
+    --c-bg: var(--grayish-yellow);
+    --c-text: var(--dark-brown);
+    --c-link: var(--dark-brown);
+    --btn-bg-1: var(--plum);
+    --btn-bg-2: var(--olive-green);
+    --btn-text: var(--cream);
+
+    /* color: secondary */
+    --cream: rgb(252, 252, 231);
+    --terracota: rgb(197, 59, 34);
+    --dark-brown: rgb(52, 17, 0);
+    --plum: rgba(150, 79, 119, 1);
+    --peony-pink: rgba(228, 131, 185, 1);
+    --olive-green: rgba(152, 155, 101, 1);
+    --grayish-yellow: rgba(236,239,200,1);
+
+
+    --size-base: 16px;
+    --size-xlarge: 4.8rem;
+    --size-large: 1.85rem;
+    --size-medium: 1.6rem;
+    --size-small: 1.2rem;
+    --size-xsmall: 0.9rem;
+    --size-xxsmall: 0.81rem;
+    --size-tiny: 0.6rem;
 }
+
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 
 * {
-    font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
-h1, h3, h5 {
-    color: rgb(171, 28, 123);
+body {
+    background-color: var(--c-bg);
+    margin: 0 0 0 0;
+    height: 100vh;
+}
+
+h1, h3 {
+    color: var(--c-primary);
+    font-family: "Audiowide", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 p {
-    color: rgb(19, 1, 51)
+    color: var(--c-text);
+    font-size: var(--size-base);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 a {
-    color: rgb(90, 163, 223);
+    color: var(--c-link);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #title {
-    font-size: 80px;
+    font-size: 5em;
+    line-height: 1.0;
+    margin-bottom: 0.5vw;
+    margin-top: 0;
 }
 
 .quote {
     padding-left: 40px;
     padding-right: 80px;
+}
+
+.introduction {
+    font-size: 2em;
+}
+
+.introheader {
+    background-color: var(--c-primary-bg);
+    padding: 5em;
+}
+
+.header {
+    background-color: var(--c-primary-bg);
+    padding: 1em 5em; 
+}
+
+.content {
+    padding: 1em 5em;
+}
+
+.introfooternav {
+    background-color: var(--btn-bg-2);
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100vw;
+
+    a {
+        color: var(--btn-text);
+        text-decoration: none;
+        font-size: 1.5em;
+    }
+}
+
+.footernav {
+    position: fixed;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    
+    a {
+        color: var(--btn-text);
+        text-decoration: none;
+        font-size: 1.5em;
+    }
+}
+
+.previousbutton {
+    background-color: var(--btn-bg-1);
+    text-align: center;
+}
+
+.nextbutton {
+    background-color: var(--btn-bg-2);
+    text-align: center;
 }

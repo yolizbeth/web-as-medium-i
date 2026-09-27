@@ -18,21 +18,24 @@
     --olive-green: rgba(152, 155, 101, 1);
     --grayish-yellow: rgba(236,239,200,1);
 
-
-    --size-base: 16px;
-    --size-xlarge: 4.8rem;
-    --size-large: 1.85rem;
-    --size-medium: 1.6rem;
-    --size-small: 1.2rem;
-    --size-xsmall: 0.9rem;
-    --size-xxsmall: 0.81rem;
-    --size-tiny: 0.6rem;
 }
 
 /* fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@font-face {
+    font-family: 'Audiowide';
+    src: url(fonts/Audiowide-Regular.ttf);
+}
 
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url(fonts/Inter-VariableFont_opsz,wght.ttf);
+}
+
+@font-face {
+    font-family: 'Inter-Italic';
+    src: url(fonts/Inter-Italic-VariableFont_opsz\,wght.ttf);
+}
 
 * {
     box-sizing: border-box;
@@ -44,16 +47,16 @@ body {
     height: 100vh;
 }
 
-h1, h3 {
+h1, h2, h3 {
     color: var(--c-primary);
-    font-family: "Audiowide", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-style: normal;
 }
 
 p {
     color: var(--c-text);
-    font-size: var(--size-base);
+    font-size: 16px;
     font-family: "Inter", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -71,6 +74,9 @@ a {
     line-height: 1.0;
     margin-bottom: 0.5vw;
     margin-top: 0;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .quote {
@@ -90,6 +96,7 @@ a {
 .header {
     background-color: var(--c-primary-bg);
     padding: 1em 5em; 
+    /* font-size: 18px; */
 }
 
 .content {

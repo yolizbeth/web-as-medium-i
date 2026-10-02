@@ -1,0 +1,293 @@
+/* color palette*/
+
+body {
+    --green: #99B63F;
+    --orange: #DB722F;
+    --mauve: #9D4F67;
+    --yellow: #F2E356;
+
+    --cream: #F9F0DF;
+    --black: #000000;
+    --white: #FFFFFF;
+
+    /* background-color: var(--cream); */
+    background-image: linear-gradient(to bottom, var(--yellow) 0%, var(--cream) 52%, var(--white) 100%);
+
+    max-height: 900px;
+}
+
+.green {
+    background-color: var(--green);
+}
+
+.orange {
+    background-color: var(--orange);
+}
+
+.mauve {
+    background-color: var(--mauve);
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.black {
+    background-color: var(--black);
+}
+
+.cream {
+    background-color: var(--cream);
+}
+
+.circle {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.gradient {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, var(--yellow) 0%, var(--cream) 52%, var(--white) 100%);
+  opacity: 1;
+}
+
+/* .halftone {
+    --dotSize: 0.25rem;
+    --bgSize: 1.35rem;
+    --bgPosition: calc(var(--bgSize) / 2);
+
+
+    background-image: radial-gradient(
+        circle at center,
+        black var(--dotSize),
+        transparent 0
+    ), radial-gradient(circle at center, black var(--dotSize), transparent 0);
+    background-size: var(--bgSize) var(--bgSize);
+    background-position: 0 0, var(--bgPosition) var(--bgPosition);
+    mix-blend-mode: overlay;
+} */
+
+.halftone {
+    position: relative;
+    /* brightness controls the threshold point */
+    filter: brightness(0.8) blur(3px) contrast(999);
+}
+
+.halftone::after {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(10px at center, black, white);
+    background-size: 20px 20px;
+    mix-blend-mode: screen;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+} */
+
+
+/* ONE */
+.y1 {
+    height: 400px;
+    width: 350px;
+    position: relative;
+    transform: translate(25px, 25px) scale(.8,.9);
+}
+
+.y1 > .tail {
+    height: 181px;
+    width: 350px;
+    border-radius: 20px;
+    position: absolute;
+    top: 55%;
+}
+
+.y1 > .stem {
+    height: 400px;
+    width: 170px;
+    border-radius: 20px;
+    position: absolute;
+    left: 52%;
+}
+
+.y1 > .vertex {
+    height: 35px;
+    width: 300px;
+    border-radius: 20px;
+    position: absolute;
+    top: 165px;
+    left: 5%;
+}
+
+.y1 > .arm {
+    height: 200px;
+    width: 165px;
+    border-radius: 20px;
+    position: absolute;
+    left: 0%;
+}
+
+/* TWO */
+
+.y2 {
+    height: 400px;
+    width: 350px;
+    /* position: relative; */
+    transform: translate(350px, -375px) scaleX(1.2);
+}
+
+.y2 > .stem {
+    height: 215px;
+    width: 101px;
+    position: absolute;
+    top: 41%;
+    left: 40%;
+}
+
+.y2 > .left-arm {
+    height: 147px;
+    width: 100px;
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    transform: skewX(25deg);
+}
+
+.y2 > .right-arm {
+    height: 147px;
+    width: 30px;
+    position: absolute;
+    top: 5%;
+    left: 70%;
+    transform: skewX(-25deg);
+}
+
+.y2 > .bottom-serif {
+    height: 20px;
+    width: 140px;
+    position: absolute;
+    top: 90%;
+    left: 35%;
+}
+
+.y2 > .left-serif {
+    height: 20px;
+    width: 130px;
+    position: absolute;
+    top: 5%;
+    left: 18%;
+}
+
+.y2 > .right-serif {
+    height: 20px;
+    width: 50px;
+    position: absolute;
+    top: 5%;
+    left: 75%;
+}
+
+
+/* THREE */
+
+.y3 {
+    height: 700px;
+    width: 200px;
+    /* position: relative; */
+    transform: rotate(90deg) translate(-550px, -250px) scaleY(.9);
+}
+
+.y3 > .stem {
+    height: 350px;
+    width: 30px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+.y3 > .left-arm {
+    height: 350px;
+    width: 30px;
+    position: absolute;
+    top: 0%;
+    left: 25%;
+    transform: skewX(10deg);
+}
+
+.y3 > .right-arm {
+    height: 350px;
+    width: 30px;
+    position: absolute;
+    top: 0%;
+    left: 55%;
+    transform: skewX(-10deg);
+}
+
+.y3 > .bottom-serif {
+    height: 30px;
+    width: 50px;
+    position: absolute;
+    top: 96%;
+    left: 35%;
+}
+
+.y3 > .left-serif {
+    height: 30px;
+    width: 50px;
+    position: absolute;
+    top: 0%;
+    left: 8%;
+}
+
+.y3 > .right-serif {
+    height: 30px;
+    width: 50px;
+    position: absolute;
+    top: 0%;
+    left: 62%;
+}
+
+/* FOUR */
+
+.y4 {
+    height: 700px;
+    width: 400px;
+    position: relative;
+    transform: translate(720px, -1400px) scale(.7); 
+}
+
+.y4 > .stem {
+    height: 700px;
+    width: 70px;
+    position: absolute;
+    border-radius: 0px 0px 50px 0px;
+    left: 70%;
+    transform: skewX(-15deg);
+}
+
+.y4 > .tail {
+    height: 180px;
+	width: 180px;
+    position: absolute;
+	border-radius: 50%;
+    top: 75%;
+}
+
+.y4 > .arm {
+    height: 300px;
+	width: 200px;
+    position: absolute;
+	border-radius: 0px 0px 0px 50px;
+    top: 0%;
+    left: 5%;
+    transform: skewX(15deg);
+}

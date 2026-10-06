@@ -6,7 +6,7 @@ body {
     --mauve: #9D4F67;
     --yellow: #F2E356;
 
-    --cream: #F9F0DF;
+    --cream: #f9f2e5;
     --black: #000000;
     --white: #FFFFFF;
 
@@ -125,3 +125,18 @@ body {
 .y6 > .stroke:focus:not(:hover):nth-child(3) { translate: -25vw -35vh; rotate:   75deg; }
 .y6 > .stroke:focus:not(:hover):nth-child(4) { translate:  45vw  40vh; rotate: -200deg; }
 .y6 > .stroke:focus:not(:hover):nth-child(5) { translate:  -5vw  45vh; rotate:  300deg; }
+
+/* halftone overlay filter*/
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;   /* clicks pass through to the strokes */
+    z-index: 9999;
+    background-image:
+        radial-gradient(circle at center, var(--cream) 0 .5px, transparent 2.5px),
+        radial-gradient(circle at center, var(--cream) 0 .5px, transparent 2.5px);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;   /* offset layer = diagonal halftone grid */
+    mask-image: linear-gradient(to bottom, transparent, var(--black));
+}

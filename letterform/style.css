@@ -56,42 +56,9 @@ body {
   opacity: 1;
 }
 
-/* .halftone {
-    --dotSize: 0.25rem;
-    --bgSize: 1.35rem;
-    --bgPosition: calc(var(--bgSize) / 2);
-
-
-    background-image: radial-gradient(
-        circle at center,
-        black var(--dotSize),
-        transparent 0
-    ), radial-gradient(circle at center, black var(--dotSize), transparent 0);
-    background-size: var(--bgSize) var(--bgSize);
-    background-position: 0 0, var(--bgPosition) var(--bgPosition);
-    mix-blend-mode: overlay;
-} */
-
-/* .halftone {
-    position: relative;
-    filter: brightness(0.8) blur(3px) contrast(999);
-} 
-.halftone::after {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(10px at center, black, white);
-    background-size: 20px 20px;
-    mix-blend-mode: screen;
-} */
-
 * {
     box-sizing: border-box;
 }
-
-/* .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-} */
 
 
 /* ONE */
@@ -99,7 +66,7 @@ body {
     height: 400px;
     width: 350px;
     position: relative;
-    transform: translate(25px, 25px) scale(.8);
+    transform: translate(0px, 25px) scale(.8,.9);
 }
 
 .y1 > .body {
@@ -110,10 +77,11 @@ body {
 }
 
 .y1 > .vertex {
-    height: 180px;
+    height: 185px;
     width: 10px;
     position: absolute;
     left: 175px;
+    top: -10px;
     border-radius: 0px 0px 30px 30px;
 }
 
@@ -133,7 +101,7 @@ height: 10px;
     height: 400px;
     width: 350px;
     /* position: relative; */
-    transform: translate(100px, 20px) scaleX(1.2);
+    transform: translate(50px, 20px) scaleX(1.2);
 }
 
 .y2 > .stem {
@@ -242,7 +210,7 @@ height: 10px;
     height: 500px;
     width: 350px;
     position: relative;
-    transform: translate(450px, -720px) scaleY(.8)
+    transform: translate(420px, -720px) scaleY(.8)
 }
 
 .y3 > .stem {
@@ -310,7 +278,7 @@ height: 10px;
     height: 700px;
     width: 400px;
     position: relative;
-    transform: translate(710px, -1150px) scale(.5);
+    transform: translate(660px, -1100px) scale(.5);
 }
 
 .y4 > .stem {
@@ -346,7 +314,7 @@ height: 10px;
     height: 450px;
     width: 350px;
     position: relative;
-    transform: translate(1150px, -1980px);
+    transform: translate(1090px, -1980px);
 }
 
 .y5 > .stem {
@@ -415,7 +383,7 @@ height: 10px;
     height: 450px;
     width: 350px;
     position: relative;
-    transform: translate(1250px, -2080px) scale(1.3);
+    transform: translate(1190px, -2050px) scale(1.3);
 }
 
 .y6 > .stroke:nth-child(1) {
@@ -460,4 +428,19 @@ height: 10px;
     transform: skew(-50deg, 20deg);
     top: 10px;
     left: 60px;
+}
+
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;   /* clicks pass through to the strokes */
+    z-index: 9999;
+    background-image:
+        radial-gradient(circle at center, var(--cream) 0 .5px, transparent 2.5px),
+        radial-gradient(circle at center, var(--cream) 0 .5px, transparent 2.5px);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;   /* offset layer = diagonal halftone grid */
+    mask-image: linear-gradient(to bottom, var(--black) 0%, transparent 45%, transparent 55%, var(--black) 100%);
 }

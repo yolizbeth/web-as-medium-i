@@ -1,0 +1,127 @@
+/* color palette*/
+
+body {
+    --green: #99B63F;
+    --orange: #DB722F;
+    --mauve: #9D4F67;
+    --yellow: #F2E356;
+
+    --cream: #F9F0DF;
+    --black: #000000;
+    --white: #FFFFFF;
+
+    background-color: var(--cream);
+    /* background-image: linear-gradient(to bottom, var(--yellow) 0%, var(--cream) 52%, var(--white) 100%); */
+
+    max-height: 900px;
+}
+
+.green {
+    background-color: var(--green);
+}
+
+.orange {
+    background-color: var(--orange);
+}
+
+.mauve {
+    background-color: var(--mauve);
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.black {
+    background-color: var(--black);
+}
+
+.cream {
+    background-color: var(--cream);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+/* letterform */
+
+.y6 {
+    height: 450px;
+    width: 350px;
+    position: relative;
+    transform: translate(600px, 250px) scale(1.5);
+}
+
+.y6 > .stroke:nth-child(1) {
+    height: 150px;
+    width: 60px;
+    position: absolute;
+    transform: skewY(-40deg);
+    top: 40px;
+    left: 60px;
+}
+.y6 > .stroke:nth-child(2) {
+    height: 250px;
+    width: 60px;
+    position: absolute;
+    transform: skewY(-40deg);
+    top: 40px;
+    left: 180px;
+}
+
+.y6 > .stroke:nth-child(3) {
+    height: 40px;
+    width: 120px;
+    position: absolute;
+    transform: skew(-50deg, 20deg);
+    top: 200px;
+    left: 60px;
+}
+
+.y6 > .stroke:nth-child(4) {
+    height: 40px;
+    width: 120px;
+    position: absolute;
+    transform: skew(-50deg, 20deg);
+    top: 280px;
+    left: 52px;
+}
+
+.y6 > .stroke:nth-child(5) {
+    height: 50px;
+    width: 30px;
+    position: absolute;
+    transform: skew(-50deg, 20deg);
+    top: 10px;
+    left: 60px;
+}
+
+/* motion */
+
+.y6 > .stroke {
+    background: var(--black);
+    outline: none;
+    cursor: pointer;
+    transition: background 0.4s ease, translate 1.2s cubic-bezier(.2, .8, .2, 1), rotate 1.2s ease;
+}
+
+/* alternating focus colors */
+.y6 > .stroke:nth-child(4n + 1) { --focus-color: var(--green); }
+.y6 > .stroke:nth-child(4n + 2) { --focus-color: var(--orange); }
+.y6 > .stroke:nth-child(4n + 3) { --focus-color: var(--mauve); }
+.y6 > .stroke:nth-child(4n + 4) { --focus-color: var(--yellow); }
+
+/* click (focused) = new color */
+.y6 > .stroke:focus {
+    background: var(--focus-color);
+}
+
+
+/* clicked + mouse has left = scatter */
+.y6 > .stroke:focus:not(:hover):nth-child(1) { translate: -40vw  30vh; rotate:  160deg; }
+.y6 > .stroke:focus:not(:hover):nth-child(2) { translate:  35vw -20vh; rotate: -120deg; }
+.y6 > .stroke:focus:not(:hover):nth-child(3) { translate: -25vw -35vh; rotate:   75deg; }
+.y6 > .stroke:focus:not(:hover):nth-child(4) { translate:  45vw  40vh; rotate: -200deg; }
+.y6 > .stroke:focus:not(:hover):nth-child(5) { translate:  -5vw  45vh; rotate:  300deg; }

@@ -46,7 +46,7 @@ body {
   height: 100%;
 }
 
-.gradient {
+/* .gradient {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -54,14 +54,14 @@ body {
   height: 100%;
   background-image: linear-gradient(to bottom, var(--yellow) 0%, var(--cream) 52%, var(--white) 100%);
   opacity: 1;
-}
+} */
 
 * {
     box-sizing: border-box;
 }
 
 
-/* ONE */
+/* Y 01: Boxy */
 .y1 {
     height: 400px;
     width: 350px;
@@ -95,7 +95,7 @@ height: 10px;
     border-radius: 0 30px 30px 0;
 }
 
-/* TWO */
+/* Y 02: Serif */
 
 .y2 {
     height: 400px;
@@ -204,7 +204,7 @@ height: 10px;
 }
 
 
-/* THREE */
+/* Y 03: Slanted Serif */
 
 .y3 {
     height: 500px;
@@ -272,7 +272,7 @@ height: 10px;
     left: 62%;
 }
 
-/* FOUR */
+/* Y 04: Shape Stencil */
 
 .y4 {
     height: 700px;
@@ -308,7 +308,7 @@ height: 10px;
     transform: skewX(15deg);
 }
 
-/* FIVE */
+/* Y 05: Soft Serif */
 
 .y5 {
     height: 450px;
@@ -377,7 +377,7 @@ height: 10px;
     left: 88px;
 }
 
-/* SIX */
+/* Y06: Blackletter */
 
 .y6 {
     height: 450px;

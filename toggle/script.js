@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // 2. Picks a random color-box that isn't currently the button
-        const others = [...divs].filter(div => div !== button);
-        const target = others[Math.floor(Math.random() * others.length)];
+        const others = [...divs].filter(div => div !== button); // others = all color-box that are not a button
+        const target = others[Math.floor(Math.random() * others.length)]; // creates target that is based on a random integer in array
 
         // 3. Swap places with the target
-        const placeholder = document.createElement('div');
+        const placeholder = document.createElement('div'); // creates temporary variable between swaps
         button.replaceWith(placeholder);
         target.replaceWith(button);
         placeholder.replaceWith(target);

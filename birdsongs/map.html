@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Boca Chica Birdsongs</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+      <div class="container fullscreen">
+          <div class="header">
+              <div class="location">
+                <p>
+                  Boca Chica Beach, TX
+                  <br>
+                  25°59'16.92" N
+                  <br>
+                  97°09'10.86" W
+                </p>
+              </div>
+
+              <div class="date">
+                <p>31 December 2010</p>
+              </div>
+          </div>
+
+          <div class="bird-map">
+            <button
+              class="birdBtn"
+              aria-label="Piping Plover"
+              data-name="Piping Plover"
+              data-scientific="Charadruius melodus"
+              data-sound="assets/audio/Piping+Plover+Calls.mp3"
+              data-image="assets/img/piping+plover.jpg"
+              data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            ></button>
+
+             <button
+              class="birdBtn"
+              aria-label="Snowy Plover"
+              data-name="Snowy Plover"
+              data-scientific="Charadruius nivosus"
+              data-sound="assets/audio/Snowy+Plover+Calls.mp3"
+              data-image="assets/img/snowy+plover.jpeg"
+              data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            ></button>
+
+             <button
+              class="birdBtn"
+              aria-label="Wilson's Plover"
+              data-name="Wilson's Plover"
+              data-scientific="Anarhynchus wilsonia"
+              data-sound="assets/audio/Wilsons+Plover+Call.mp3"
+              data-image="assets/img/wilsons+plover.jpg"
+              data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            ></button>
+          </div>
+
+          <div class="footer">
+            <div class="sonic-wave">
+             <div id="wave"></div>
+           </div>
+
+            <div class="audio-player">
+              <button id="playPause" aria-label="Play" disabled>▶</button>
+            </div>
+
+            <div class="current-audio">
+              <p id="currentCommon">click to listen</p>
+              <p id="currentScientific"></p>
+            </div>
+          </div>
+      </div>
+
+    <dialog id="birdDialog">
+      <img id="dialogImage" src="" alt="">
+      <h2 id="dialogName"></h2>
+      <h3 id="dialogScientific"></h3>
+      <p id="dialogDescription"></p>
+    </dialog>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

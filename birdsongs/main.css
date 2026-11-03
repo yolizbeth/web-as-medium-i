@@ -1,0 +1,271 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: 2px solid red;
+}
+
+body {
+  font-family: "DM Mono", monospace;
+}
+
+button,
+dialog {
+  font-family: inherit;
+}
+
+p {
+  color: white;
+  font-size: 1.5rem;
+  font-family: inherit;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* .container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./assets/img/boca+chica+2010.jpg');
+  background-size: cover;
+  background-position: center;
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  isolation: isolate;
+}
+
+/* recrops google map img */
+.container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url('./assets/img/boca+chica+2010.jpg');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.3);
+  transform-origin: 50% 50%;
+}
+
+/* adds dark overlay + film grain */
+.container::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 1em;
+}
+
+.location {
+    text-align: left;
+}
+
+.date {
+    text-align: right;
+}
+
+.bird-map {
+  height: 75%;
+  position: relative;
+}
+
+.bird-map > button {
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  background-color: gainsboro;
+}
+
+.bird-map > button:nth-child(1) {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+}
+
+.bird-map > button:nth-child(2) {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+.bird-map > button:nth-child(3) {
+  position: absolute;
+  top: 90px;
+  left: 500px;
+}
+
+.bird-map > button:hover,
+.bird-map > button:active {
+  background-color: yellow;
+}
+
+
+/* Hover / focus label */
+.birdBtn::after {
+  content: attr(data-name);
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  white-space: nowrap;
+  padding: 0.25em 0.6em;
+  border-radius: 0;
+  background: yellow;
+  color: #222;
+  font-family: inherit;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+
+.birdBtn:hover::after,
+.birdBtn:focus-visible::after {
+  opacity: 1;
+}
+
+.birdBtn {
+  cursor: pointer;
+}
+
+/* Pop-up */
+dialog {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: 320px;
+  max-width: 90vw;
+  padding: 1em;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+  background: yellow;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+dialog img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 40vh;
+  object-fit: cover;
+  margin: 0 0 1em;
+}
+
+dialog h2 {
+  font-weight: 500;
+  margin-bottom: 0.1em;
+}
+
+dialog h3 {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 1em;
+}
+
+/* overides global p rule */
+dialog p {
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 2fr auto 1fr;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  margin-left: 30%;
+  /* background: rgba(0, 0, 0, 0.45); */
+}
+
+.current-audio p:first-child {
+  font-weight: 600;
+}
+
+.current-audio p:last-child {
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.birdBtn.active {
+  background-color: yellow;
+}
+
+.footer.playing .current-audio p {
+  color: yellow;
+}
+
+.audio-player {
+  display: flex;
+  justify-content: center;
+}
+
+#playPause {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: none;
+  background: gainsboro;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+#playPause:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sonic-wave {
+  height: 3.5em;
+  position: relative;
+}
+
+/* idle/default line before WaveSurfer plays */
+.sonic-wave::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-50%);
+}
+
+#wave {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+

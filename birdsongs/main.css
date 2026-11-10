@@ -106,6 +106,7 @@ p {
   gap: 2em;
   padding: 1em;
   flex-shrink: 0;            /* stops the flex column from squeezing the header */
+  
 }
 
 .location,

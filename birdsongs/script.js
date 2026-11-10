@@ -136,6 +136,58 @@ const layers = SCENES.map((scene) => {
   return layer;
 });
 
+/* INTRO + PRELOADER */
+const intro = document.getElementById('intro');
+const introBar = document.getElementById('introBar');
+const introStatus = document.getElementById('introStatus');
+const enterBtn = document.getElementById('enterBtn');
+
+const MIN_INTRO_MS = 1500;    // shortest time the intro stays up, so it never just flashes
+const MAX_WAIT_MS = 20000;    // give up waiting after this long and let people in anyway
+
+const loadImage = (src) =>
+  new Promise((resolve) => {
+    const img = new Image();
+    img.onload = img.onerror = resolve;   // a missing file shouldn't block the page
+    img.src = src;
+  });
+
+const loadAudioFile = (src) => fetch(src).then((r) => r.blob()).catch(() => {});
+
+const soundFiles = [...new Set([...document.querySelectorAll('[data-sound]')].map((b) => b.dataset.sound))];
+
+const tasks = [
+  document.fonts.ready,
+  ...SCENES.map((s) => loadImage(s.image)),
+  ...soundFiles.map(loadAudioFile),
+];
+
+let loaded = 0;
+const tick = () => {
+  loaded++;
+  const pct = Math.round((loaded / tasks.length) * 100);
+  introBar.style.width = `${pct}%`;
+  introStatus.textContent = `Loading ${pct}%`;
+};
+
+const tracked = tasks.map((t) => Promise.resolve(t).then(tick, tick));
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+Promise.race([Promise.all([...tracked, wait(MIN_INTRO_MS)]), wait(MAX_WAIT_MS)]).then(() => {
+  introBar.style.width = '100%';
+  introStatus.textContent = 'Ready';
+  enterBtn.disabled = false;
+  enterBtn.textContent = 'Enter';
+  enterBtn.focus();
+});
+
+enterBtn.addEventListener('click', () => {
+  intro.classList.add('done');
+  document.documentElement.classList.remove('intro-open');
+  document.querySelector('.container').removeAttribute('inert');
+  setTimeout(() => intro.remove(), reduceMotion ? 0 : 700);
+});
+
 // Total scroll distance = one SCROLL_PER_SCENE per transition
 track.style.height = `calc(100vh + ${(SCENES.length - 1) * SCROLL_PER_SCENE}vh)`;
 

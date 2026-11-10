@@ -470,5 +470,72 @@ html {
   #scroll-cue { animation: none; }
 }
 
+html.intro-open {
+  overflow: hidden;
+}
 
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 40;             /* above the sidebar (30) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  background: #0d0d0d;
+  transition: opacity 0.6s ease;
+}
+
+#intro.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro h1 {
+  color: white;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+}
+
+#intro p {
+  font-size: 1rem;         /* overrides the global 1.5rem p rule */
+  max-width: 40ch;
+}
+
+.intro-progress {
+  width: min(320px, 70vw);
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#introBar {
+  width: 0;
+  height: 100%;
+  background: yellow;
+  transition: width 0.3s ease;
+}
+
+#enterBtn {
+  padding: 0.7em 2em;
+  border: 2px solid yellow;
+  border-radius: 0;
+  background: transparent;
+  color: yellow;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#enterBtn:disabled {
+  opacity: 0.4;
+  cursor: wait;
+}
+
+#enterBtn:not(:disabled):hover,
+#enterBtn:focus-visible {
+  background: yellow;
+  color: #222;
+}
 

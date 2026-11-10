@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Boca Chica Birdsongs</title>
+    <title>Birdsongs from Boca Chica</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,52 +12,117 @@
   </head>
 
   <body>
-      <div class="container fullscreen">
-          <div class="header">
-              <div class="location">
-                <p>
-                  Boca Chica Beach, TX
-                  <br>
-                  25°59'16.92" N
-                  <br>
-                  97°09'10.86" W
-                </p>
-              </div>
+    <div class="container fullscreen">
+      <div id="bg" aria-hidden="true"></div>
+      <svg id="links" aria-hidden="true"></svg>
 
-              <div class="date">
-                <p>31 December 2010</p>
-              </div>
+      <div class="header">
+        <div class="location">
+          <p id="placeName">Boca Chica Beach, TX</p>
+          <p id="sceneBlurb"></p>
+        </div>
+
+        <div class="header-right">
+          <div class="date">
+            <p id="dateText">31 December 2010</p>
           </div>
+          <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">☰</button>
+        </div>
+      </div>
 
-          <div class="bird-map">
+      <div class="bird-map">
             <button
               class="birdBtn"
+              data-type="bird"
               aria-label="Piping Plover"
               data-name="Piping Plover"
               data-scientific="Charadruius melodus"
               data-sound="assets/audio/Piping+Plover+Calls.mp3"
               data-image="assets/img/piping+plover.jpg"
-              data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              data-description="A little round short bird that hides in plain sight on sandy ocean and lake shores, blending right in with their sandy gray backs.
+              Status: Endangered."
             ></button>
 
-             <button
+            <button
               class="birdBtn"
+              data-type="bird"
               aria-label="Snowy Plover"
               data-name="Snowy Plover"
               data-scientific="Charadruius nivosus"
               data-sound="assets/audio/Snowy+Plover+Calls.mp3"
               data-image="assets/img/snowy+plover.jpeg"
-              data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              data-description="A tiny, pale shorebird known for its camouflage on open sandy beaches and salt flats.
+              Status: Nearly Threatened."
             ></button>
 
-             <button
+            <button
               class="birdBtn"
+              data-type="bird"
               aria-label="Wilson's Plover"
               data-name="Wilson's Plover"
               data-scientific="Anarhynchus wilsonia"
               data-sound="assets/audio/Wilsons+Plover+Call.mp3"
               data-image="assets/img/wilsons+plover.jpg"
+              data-description="A medium-sized, stout shorebird best known for its disproportionately large, thick black bill. 
+              Status: Least Concern."
+            ></button>
+
+            <!-- <button
+              class="birdBtn"
+              data-type="bird"
+              data-to="1.5"
+              aria-label="Red Knot"
+              data-name="Calidris canutus rufa"
+              data-scientific="Anarhynchus wilsonia"
+              data-sound="assets/audio/Wilsons+Plover+Call.mp3"
+              data-image="assets/img/wilsons+plover.jpg"
               data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            ></button> -->
+
+            <!-- <button
+              class="birdBtn"
+              data-type="bird"
+              data-to="1.5"
+              aria-label="Least Tern"
+              data-name="Least Tern"
+              data-scientific="Sternula antillarum"
+              data-sound="assets/audio/Wilsons+Plover+Call.mp3"
+              data-image="assets/img/wilsons+plover.jpg"
+              data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            ></button> -->
+
+            <button
+              class="birdBtn"
+              data-type="rocket"
+              data-year="2021"
+              aria-label="Starship SN15 Prototype"
+              data-name="Starship SN15 Protoype"
+              data-scientific="2021 · Explosion"
+              data-sound="assets/audio/spacex+starship_2021.mp3"
+              data-image="assets/img/starship+SN15.jpg"
+            ></button>
+
+              <button
+              class="birdBtn"
+              data-type="rocket"
+              data-year="2025"
+              aria-label="Starship 36"
+              data-name="Starship 36"
+              data-scientific="2025 · Explosion"
+              data-sound="assets/audio/spacex+starship_2025.mp3"
+              data-image="assets/img/spacex-explosion_2025.jpg"
+            ></button>
+
+             <button
+              class="birdBtn"
+              data-type="rocket"
+              data-year="2016"
+              aria-label="Falcon 9"
+              data-name="Falcon 9"
+              data-scientific="2016 · Explosion"
+              data-sound="assets/audio/spacex+falcon9_2016.mp3"
+              data-image="assets/img/falcon+9.jpg"
+              
             ></button>
           </div>
 
@@ -71,11 +136,14 @@
             </div>
 
             <div class="current-audio">
-              <p id="currentCommon">click to listen</p>
+              <p id="currentCommon">click a node to begin</p>
               <p id="currentScientific"></p>
             </div>
           </div>
       </div>
+
+    <div id="scroll-track" aria-hidden="true"></div>
+    <div id="scroll-cue" aria-hidden="true">↓</div>
 
     <dialog id="birdDialog">
       <img id="dialogImage" src="" alt="">
@@ -83,6 +151,23 @@
       <h3 id="dialogScientific"></h3>
       <p id="dialogDescription"></p>
     </dialog>
+    
+    <aside id="sideMenu" aria-label="Site menu">
+      <button id="closeMenu" aria-label="Close menu">×</button>
+
+      <h2>Dates</h2>
+        <ul id="sceneList"></ul>
+
+      <h2>Credits</h2>
+        <ul class="credits">
+        <li>Designed by: Yolizbeth Lozano, Fall 2026</li>
+        <li>Background imagery: Google Earth</li>
+        <li>Bird calls: American Bird Conservatory on Youtube</li>
+        <li>Rocket audio: @digitaltrends on YouTube</li>
+        <li>Waveform: Wavesurfer.js</li>
+        <li>Typeface: DM Mono, Colophon Foundry</li>
+      </ul>
+    </aside>
 
     <script type="module" src="script.js"></script>
   </body>

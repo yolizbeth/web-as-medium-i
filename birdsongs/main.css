@@ -16,7 +16,7 @@ dialog {
 
 p {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-family: inherit;
   font-weight: 400;
   font-style: normal;
@@ -32,13 +32,13 @@ p {
   background-position: center;
 } */
 
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
   isolation: isolate;
-}
+} */
 
 /* recrops google map img */
 .container::before {
@@ -46,10 +46,10 @@ p {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-image: url('./assets/img/boca+chica+2010.jpg');
+  background-image: url('./assets/img/boca+chica_2011.png');
   background-size: cover;
   background-position: center;
-  transform: scale(1.3);
+  transform: scale(1.1);
   transform-origin: 50% 50%;
 }
 
@@ -62,7 +62,7 @@ p {
   pointer-events: none;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
 }
 
 .fullscreen {
@@ -71,13 +71,53 @@ p {
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: auto;
+  overflow: hidden;
+}
+
+/* Background layers (one per scene, crossfaded by JS) */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+#bg .bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.5);       /* your recrop zoom */
+  transform-origin: 40% 70%;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Gives the page its scroll distance; height is set by JS */
+#scroll-track {
+  width: 1px;
+  pointer-events: none;
 }
 
 .header {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr auto;   /* was auto auto */
+  gap: 2em;
   padding: 1em;
+}
+
+#sceneBlurb {
+  max-width: 45ch;
+  margin-top: 0.4em;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#placeName,
+#dateText,
+#sceneBlurb {
+  transition: opacity 0.25s;
 }
 
 .location {
@@ -98,31 +138,28 @@ p {
   width: 1.5em;
   border-radius: 50%;
   background-color: gainsboro;
+  cursor: pointer;
+  border: none;
+  outline:none;
 }
 
-.bird-map > button:nth-child(1) {
-  position: absolute;
-  top: 40px;
-  left: 60px;
-}
-
-.bird-map > button:nth-child(2) {
-  position: absolute;
-  top: 200px;
-  left: 200px;
-}
-
-.bird-map > button:nth-child(3) {
-  position: absolute;
-  top: 90px;
-  left: 500px;
+.bird-map > button {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: gainsboro;
 }
 
 .bird-map > button:hover,
-.bird-map > button:active {
+.bird-map > button:active,
+.birdBtn.active {
   background-color: yellow;
 }
 
+/* Rockets are squares */
+.birdBtn[data-type="rocket"] {
+  border-radius: 0;
+}
 
 /* Hover / focus label */
 .birdBtn::after {
@@ -148,8 +185,40 @@ p {
   opacity: 1;
 }
 
-.birdBtn {
+/* .birdBtn {
   cursor: pointer;
+} */
+/* Lines layer: full viewport, behind the buttons */
+#links {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#links line {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1;
+}
+
+#links .popup-line {
+  stroke: yellow;
+  stroke-width: 1.5;
+}
+
+/* JS sets left/top to each node's center */
+.birdBtn {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+/* The pop-up replaces the hover label while open */
+.birdBtn.active::after {
+  opacity: 0;
 }
 
 /* Pop-up */
@@ -166,6 +235,7 @@ dialog {
   background: yellow;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   z-index: 20;
+  overflow-y: auto;
 }
 
 dialog img {
@@ -266,6 +336,139 @@ dialog p {
   height: 100%;
 }
 
+.header-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+#menuBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+#menuBtn:hover,
+#menuBtn[aria-expanded="true"] {
+  background: yellow;
+  border-color: yellow;
+  color: #222;
+}
+
+/* Sidebar (slides in from the right) */
+#sideMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 85vw);
+  padding: 1.5em;
+  overflow-y: auto;
+  background: yellow;
+  color: #222;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.4);
+  z-index: 30;
+  transform: translateX(100%);
+  visibility: hidden;   /* also removes it from tab order while closed */
+  transition: transform 0.3s ease, visibility 0s 0.3s;
+}
+
+#sideMenu.open {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.3s ease;
+}
+
+#sideMenu h2 {
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 1.5em 0 0.5em;
+}
+
+#sideMenu ul {
+  list-style: none;
+}
+
+#sideMenu li {
+  font-size: 0.9rem; 
+  margin-bottom: 0.5em;
+}
+
+#sceneList button {
+  width: 100%;
+  padding: 0.5em 0.6em;
+  border: 0;
+  border-bottom: 1px solid #222;
+  background: transparent;
+  color: #222;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#sceneList button:hover,
+#sceneList button.current {
+  background: #222;
+  color: yellow;
+}
+
+#closeMenu {
+  float: right;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  background: transparent;
+  color: #222;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* SCROLl BAR */
+html {
+  scrollbar-width: auto;
+  scrollbar-color: yellow rgba(0, 0, 0, 0.55);
+}
+
+/* Fallback for older browsers that don't have color support*/
+@supports not (scrollbar-color: auto) {
+  html::-webkit-scrollbar { width: 16px; }
+  html::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.55); }
+  html::-webkit-scrollbar-thumb {
+    background: yellow;
+    border: 3px solid rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* Bobbing arrow */
+#scroll-cue {
+  position: fixed;
+  right: 2rem;
+  top: 90%;
+  z-index: 5;
+  color: yellow;
+  font-size: 2rem;
+  pointer-events: none;
+  animation: bob 1.4s ease-in-out infinite;
+  transition: opacity 0.4s;
+}
+
+#scroll-cue.hidden {
+  opacity: 0;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scroll-cue { animation: none; }
+}
 
 
 

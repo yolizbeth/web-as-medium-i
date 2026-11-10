@@ -93,7 +93,7 @@ function positionDialog() {
 
 /* BACKGROUND SCROLL FUNCTION */
 
-const STARBASE_FROM = '2025-10-28';   // will affect scenes on/after 2025
+const STARBASE_FROM = '2025-05-03';   // will affect scenes on/after 2025
 
 const SCENES = [
   { date: '2011-01-22', image: 'assets/img/boca+chica_2011.png', blurb: 'A lush coast located between the Rio Grande and Gulf of Mexico.'  },
